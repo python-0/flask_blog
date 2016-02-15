@@ -9,7 +9,7 @@ from ..email import send_mail
 @main.route('/',methods=['GET','Post'])
 def index():
 	form = NameForm()
-	if form.validate_on_submit():
+	if form.validate_on_submit(): #test what?
 		user = User.query.filter_by(username=form.name.data).first()
 		if user is None:
 			user = User(username = form.name.data)
@@ -23,7 +23,8 @@ def index():
 		form.name.data = ''
 		return redirect(url_for('.index'))
 	return render_template('index.html',form = form, name = session.get('name'),
-		known = session.get('known', False) )
+		known = session.get('known', False) ) 
+
 
 @main.route('/user/<name>')
 def user(name):
