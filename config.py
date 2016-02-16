@@ -1,6 +1,7 @@
 import os
 basedir = os.path.abspath( os.path.dirname(__file__) )
 
+
 class Config:
 	SECRET_KEY = 'hard to guess string'
 
@@ -19,21 +20,26 @@ class Config:
 	def init_app(app):
 		pass
 
+	def __init__(self):
+		pass
+
+
 class DevelopmentConfig(Config):
-	DEBUG=True
-	SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir,'data-dev.sqlite')
+	DEBUG = True
+	SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
+
 
 class TestingConfig(Config):
-	DEBUG=True
-	SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir,'data-test.sqlite')
+	DEBUG = True
+	SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'data-test.sqlite')
+
 
 class ProductionConfig(Config):
-	SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir,'data.sqlite')
+	SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
 
 config = {
 	'development': 		DevelopmentConfig,
 	'testing': 			TestingConfig,
 	'ProductionConfig':	ProductionConfig,
-
 	'default':			DevelopmentConfig
 }
